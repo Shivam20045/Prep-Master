@@ -9,13 +9,13 @@ const Header = () => {
       
       {/* Logo */}
       <Link href={"/"}>
-      <Image src={"/logo.png"}
+      <Image src={"/logo1.png"}
       alt="Prep-Master"
       width={100}
       height={100}
-      className="h-11 w-auto"
-      <Link>
-      Prep-Master
+      className="h-11 w-auto"/>
+      </Link>
+      
       {/* Sign In */}
       <div className="flex items-center gap-3">
         <Show when="signed-out">
