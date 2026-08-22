@@ -1,36 +1,44 @@
+# Prep-Master
 
+An AI-powered interview preparation platform that generates custom interview questions and runs realistic voice-based mock interviews.
+
+## Features
+
+- AI-generated interview questions tailored to role and experience level (powered by Google Gemini)
+- Realistic voice interview sessions using Vapi
+- User authentication and session management via Clerk
+- Interview history and feedback stored with Supabase
+
+## Tech Stack
+
+- **Framework:** Next.js (App Router)
+- **Auth:** Clerk
+- **Database:** Supabase
+- **AI:** Google Gemini API
+- **Voice:** Vapi
 
 ## Getting Started
 
-First, run the development server:
+Install dependencies and run the dev server:
 
-```bash
+\`\`\`bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+\`\`\`
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the app.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Environment Variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+You'll need to set up the following in a `.env.local` file:
 
-## Learn More
+- `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`
+- `CLERK_SECRET_KEY`
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- `GEMINI_API_KEY`
+- `NEXT_PUBLIC_VAPI_WEB_TOKEN`
 
-To learn more about Next.js, take a look at the following resources:
+## Deployment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Deployed on [Vercel](https://vercel.com).
