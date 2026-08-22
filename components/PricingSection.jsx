@@ -5,10 +5,6 @@ import { CheckoutButton } from "@clerk/nextjs/experimental";
 import { SignInButton } from "@clerk/nextjs";
 import { PLANS } from "@/lib/data";
 
-// Note: same as Header — swapped ui/Button for plain <button> since I don't
-// have your Button variant source. Clerk's CheckoutButton/SignInButton just
-// need a clickable child, so a plain button works fine here.
-
 export default function PricingSection() {
   const { has, userId } = useAuth();
 
@@ -39,7 +35,7 @@ export default function PricingSection() {
                 : "bg-white border border-slate-200 hover:border-violet-100 shadow-sm"
             } ${isActive ? "ring-1 ring-violet-300" : ""}`}
           >
-            {/* Most Popular badge */}
+            {/*Popular badge */}
             {plan.featured && !isActive && (
               <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-violet-600 text-white text-xs font-bold tracking-wide uppercase px-3.5 py-1 rounded-full whitespace-nowrap">
                 Most Popular

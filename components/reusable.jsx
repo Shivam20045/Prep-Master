@@ -1,7 +1,3 @@
-// Same export names as your original reusable.jsx (GrayTitle, GoldTitle, etc.)
-// so any other file importing these still works — only the colors changed,
-// from the amber/dark palette to the violet/light one.
-
 export const GrayTitle = ({ children }) => (
   <span className="bg-linear-to-br from-slate-900 via-slate-700 to-slate-500 bg-clip-text text-transparent">
     {children}

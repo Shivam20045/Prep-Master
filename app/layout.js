@@ -1,5 +1,5 @@
 import { Fraunces, Inter } from "next/font/google";
-import { ClerkProvider } from "@clerk/nextjs";
+import { ClerkProvider, Show, SignInButton, SignUpButton, UserButton } from '@clerk/nextjs';
 import "./globals.css";
 import { Header } from "@/components/Header";
 
@@ -23,9 +23,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    // Removed appearance={{ theme: dark }} — Clerk's modal should match the new light UI.
-    // If you want the Clerk modal themed to match violet accents, see the note at the
-    // bottom of this file for a light-appearance config you can drop in instead.
+   
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
         <body
@@ -39,9 +37,8 @@ export default function RootLayout({ children }) {
   );
 }
 
-/*
-Optional light Clerk appearance, if you want the sign-in modal to match:
 
+/*
 import { ClerkProvider } from "@clerk/nextjs";
 
 <ClerkProvider

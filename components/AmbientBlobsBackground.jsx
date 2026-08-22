@@ -1,7 +1,3 @@
-// Replaces <GravityStarsBackgroundDemo /> for the light theme.
-// Drop this file in components/, then in page.jsx swap the import + usage
-// (see page.jsx for the exact line to change).
-
 export function AmbientBlobsBackground({ className = "" }) {
   return (
     <div

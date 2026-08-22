@@ -1,10 +1,15 @@
+"use client";
 import {
   GoldTitle,
   GrayTitle,
   SectionLabel,
   SectionHeading,
 } from "@/components/reusable";
+import { AlertColors } from "@/components/AlertBox";
 import { AI_TAGS, AVATARS, LOGOS, SLOTS } from "@/lib/data";
+import { useState } from "react";
+import { useUser } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { Bot, Wallet } from "lucide-react";
@@ -12,11 +17,9 @@ import { BentoCard } from "@/components/BentoCard";
 import PricingSection from "@/components/PricingSection";
 import { AmbientBlobsBackground } from "@/components/AmbientBlobsBackground";
 import { HeroSessionCard } from "@/components/HeroSessionCard";
+import { SignIn, SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
 
-// Note: AI_TAGS / SLOTS render below with your original data shape, but I
-// don't have lib/data.js so I couldn't re-theme any hardcoded colors baked
-// into e.g. SLOTS[i].cls. If those look off (leftover amber), send me that
-// file and I'll fix the classes directly.
+
 
 function MockUI({ rows = 3 }) {
   const widths = ["w-4/5", "w-3/5", "w-2/5", "w-4/5", "w-1/2"];
@@ -48,6 +51,23 @@ function MockUI({ rows = 3 }) {
 }
 
 export default function Home() {
+  const [showAlert, setShowAlert] = useState(false);
+  const { isSignedIn } = useUser();
+  const router = useRouter();
+
+  const handleBrowseInterview = () => {
+    if (!isSignedIn) {
+      setShowAlert(true);
+
+      setTimeout(() => {
+        setShowAlert(false);
+      }, 3000);
+
+      return;
+    }
+
+    router.push("/interview");
+  };
   return (
     <div className="bg-white overflow-x-hidden">
       <section className="relative min-h-screen grid grid-cols-1 lg:grid-cols-5 px-4 sm:px-8 pt-28 sm:pt-15 pb-20 overflow-hidden">
@@ -70,17 +90,30 @@ export default function Home() {
           </p>
 
           <div className="relative flex justify-center gap-2 sm:gap-4 mt-10 sm:w-auto">
-            <Link href="/onboarding">
-              <button className="text-sm sm:text-base font-semibold text-white bg-violet-600 hover:bg-violet-700 px-6 py-3.5 rounded-full shadow-lg shadow-violet-600/25 transition hover:-translate-y-0.5">
-                Get started
+            {/* <Link href="/onboardin"> */}
+              <button
+                className="text-sm sm:text-base font-semibold text-white bg-violet-600 hover:bg-violet-700 px-6 py-3.5 rounded-full shadow-lg shadow-violet-600/25 transition hover:-translate-y-0.5"
+                onClick={() => {
+                  document.getElementById("features")?.scrollIntoView({
+                    behavior: "smooth",
+                  });
+                }}
+              >
+                Features
               </button>
-            </Link>
+            {/* </Link> */}
+            {showAlert && (
+              <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[9999] w-[90%] max-w-md">
+                <AlertColors />
+              </div>
+            )}
 
-            <Link href="/explore">
-              <button className="text-sm sm:text-base font-semibold text-slate-900 border border-slate-200 hover:border-violet-300 hover:text-violet-600 px-6 py-3.5 rounded-full transition">
-                Browse Interviewers →
-              </button>
-            </Link>
+            <button
+              onClick={handleBrowseInterview}
+              className="text-sm sm:text-base font-semibold text-slate-900 border border-slate-200 hover:border-violet-300 hover:bg-violet-50 px-4 py-2 rounded-lg"
+            >
+              Browse Interviews
+            </button>
           </div>
 
           <div className="relative flex items-center justify-center gap-3 sm:gap-4 mt-8 sm:mt-16">
@@ -111,7 +144,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* RIGHT — hero signature visual */}
+        {/* RIGHT — Portion*/}
         <div className="relative z-10 col-span-full lg:col-span-2 flex items-center justify-center mt-12 lg:mt-0">
           <HeroSessionCard />
         </div>
@@ -138,7 +171,10 @@ export default function Home() {
       </section>
 
       {/* FEATURES */}
-      <section className="relative z-10 py-28 max-w-5xl mx-auto px-6">
+      <section
+        id="features"
+        className="relative z-10 py-28 max-w-5xl mx-auto px-6"
+      >
         <div className="text-center mb-16">
           <SectionLabel>Features</SectionLabel>
           <SectionHeading
@@ -150,9 +186,9 @@ export default function Home() {
         <div className="grid grid-cols-12 gap-4">
           <div className="col-span-12 md:col-span-7">
             <BentoCard
-              icon={<Bot size={20} className="text-violet-600" />}
-              title={<GrayTitle>AI Question Generator</GrayTitle>}
-              desc="Interviewers get a live AI co-pilot generating role-specific questions on demand — system design, behavioural, DSA — all tailored to the candidate's level."
+              icon="🤖"
+              title={<GrayTitle>AI Mock Interviews</GrayTitle>}
+              desc="Practice realistic AI-powered interviews tailored to your chosen role, experience level, and technology stack. Receive dynamic follow-up questions just like a real interviewer."
             >
               <div className="flex flex-wrap gap-2 mt-5">
                 {AI_TAGS.map((t) => (
@@ -175,7 +211,7 @@ export default function Home() {
             <BentoCard
               icon={<Wallet size={16} className="text-violet-600" />}
               title={<GrayTitle>Credit System</GrayTitle>}
-              desc="Subscribe for monthly credits. Book sessions. Interviewers earn and withdraw any time."
+              desc="Every interview uses AI credits. Choose a subscription plan and get fresh credits every month to continue practicing."
             >
               <div className="mt-5 rounded-xl bg-slate-50 border border-slate-200 p-5 flex justify-between items-end">
                 <div>
@@ -197,9 +233,9 @@ export default function Home() {
 
           <div className="col-span-12 md:col-span-4">
             <BentoCard
-              icon="📹"
-              title="HD Video Calls"
-              desc="Powered by Stream. Screen sharing, recording, and instant playback links — all built in."
+              icon="🗣️"
+              title="Voice AI Interview"
+              desc="Talk naturally with an AI interviewer using real-time voice conversations. Improve communication skills through interactive interview sessions."
             >
               <MockUI rows={3} />
             </BentoCard>
@@ -207,17 +243,17 @@ export default function Home() {
 
           <div className="col-span-12 md:col-span-4">
             <BentoCard
-              icon="💬"
-              title="Persistent Chat"
-              desc="Message your interviewer before and after the call. Share resources, prep notes, and follow-ups in one thread."
+              icon="📚"
+              title="Multiple Interview Categories"
+              desc="Practice interviews across different domains and difficulty levels."
             />
           </div>
 
           <div className="col-span-12 md:col-span-4">
             <BentoCard
-              icon="🔒"
-              title="Security by Arcjet"
-              desc="Bot protection, rate limiting, and abuse prevention baked into every API route."
+              icon="💻"
+              title="Personalized Question Generation"
+              desc="Every interview is unique. Questions are dynamically generated using AI based on your selected role, experience level, and interview type."
             />
           </div>
 
@@ -233,9 +269,9 @@ export default function Home() {
 
           <div className="col-span-12 md:col-span-6">
             <BentoCard
-              icon="🗓️"
-              title={<GoldTitle>Slot-based Scheduling</GoldTitle>}
-              desc="Interviewers set availability once. Interviewees pick from open slots and confirm with one click — no back-and-forth needed."
+              icon="📄"
+              title={<GoldTitle>Resume Analyzer</GoldTitle>}
+              desc="Upload your resume and receive ATS score, keyword optimization, formatting suggestions, and personalized improvement tips."
             >
               <div className="flex flex-wrap gap-2 mt-5">
                 {SLOTS.map((s) => (

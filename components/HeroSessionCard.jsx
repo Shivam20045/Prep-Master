@@ -1,13 +1,9 @@
 import { Bot, AlertTriangle, Mic, BookX } from "lucide-react";
 
-// Replaces the earlier "human interviewer conversation" mockup — Prept's
-// interviewer is AI, so this now shows what the product actually produces:
-// a post-session feedback breakdown (mistakes, mispronunciations, gaps).
-
 export function HeroSessionCard() {
   return (
     <div className="relative w-full max-w-md h-[440px] mx-auto">
-      {/* floating feedback-category chips */}
+     
       <div className="absolute top-2 left-0 z-20 flex items-center gap-1.5 bg-white border border-slate-200 rounded-full px-3.5 py-2 text-xs font-semibold text-slate-900 shadow-lg shadow-slate-200/60 animate-[bob3_6s_ease-in-out_infinite]">
         <AlertTriangle size={13} className="text-red-500" />
         Mistake
@@ -21,7 +17,7 @@ export function HeroSessionCard() {
         Knowledge gap
       </div>
 
-      {/* main feedback report card */}
+      {/* feedback report card */}
       <div className="absolute top-14 left-1/2 -translate-x-1/2 w-[320px] bg-white border border-slate-200 rounded-2xl shadow-2xl shadow-slate-300/40 p-5 z-10 animate-[bob1_5s_ease-in-out_infinite]">
         <div className="flex items-center gap-3 mb-4">
           <div className="w-11 h-11 rounded-full bg-gradient-to-br from-violet-500 to-sky-400 flex items-center justify-center shrink-0">

@@ -1,0 +1,75 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider  = "postgresql"
+  
+}
+
+enum Difficulty {
+  Beginner
+  Intermediate
+  Advanced
+}
+
+enum InterviewStatus {
+  pending
+  in_progress
+  completed
+  abandoned
+}
+
+model User {
+  id        String   @id @default(uuid())
+  clerkId   String   @unique @map("clerk_id")
+  email     String   @unique
+  fullName  String?  @map("full_name")
+  avatarUrl String?  @map("avatar_url")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  interviews Interview[]
+
+  @@map("users")
+}
+
+model InterviewType {
+  id              String     @id @default(uuid())
+  slug            String     @unique
+  title           String
+  description     String
+  icon            String?
+  difficulty      Difficulty
+  durationMinutes Int        @map("duration_minutes")
+  questionCount   Int        @map("question_count")
+  isActive        Boolean    @default(true) @map("is_active")
+  createdAt       DateTime   @default(now()) @map("created_at")
+
+  interviews Interview[]
+
+  @@map("interview_types")
+}
+
+model Interview {
+  id              String          @id @default(uuid())
+  userId          String          @map("user_id")
+  interviewTypeId String          @map("interview_type_id")
+  status          InterviewStatus @default(pending)
+  startedAt       DateTime?       @map("started_at")
+  completedAt     DateTime?       @map("completed_at")
+  createdAt       DateTime        @default(now()) @map("created_at")
+
+  user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  interviewType InterviewType @relation(fields: [interviewTypeId], references: [id])
+
+  @@index([userId])
+  @@index([status])
+  @@map("interviews")
+}
