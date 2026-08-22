@@ -1,8 +1,8 @@
 import { generateText } from "ai";
 import { google } from "@ai-sdk/google";
-import { PrismaClient } from "@prisma/client";
+import { db } from "@/lib/prisma";
 
-const prisma = new PrismaClient();
+// const prisma = new PrismaClient();
 
 export async function POST(request) {
   const { type, role, level, techstack, amount, userid } = await request.json();
@@ -29,7 +29,7 @@ export async function POST(request) {
     const cleaned = questions.replace(/```json|```/g, "").trim();
     const parsedQuestions = JSON.parse(cleaned);
 
-    const interview = await prisma.interview.create({
+    const interview = await db.interview.create({
       data: {
         role,
         type,
