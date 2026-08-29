@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
         <body
-          className={`${fraunces.variable} ${inter.variable} font-sans bg-white text-slate-900`}
+          className={`${fraunces.variable} ${inter.variable} font-sans  text-slate-900`}
         >
           <Header />
           <main className="min-h-screen">{children}</main>

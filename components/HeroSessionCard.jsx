@@ -3,28 +3,27 @@ import { Bot, AlertTriangle, Mic, BookX } from "lucide-react";
 export function HeroSessionCard() {
   return (
     <div className="relative w-full max-w-md h-[440px] mx-auto">
-     
-      <div className="absolute top-2 left-0 z-20 flex items-center gap-1.5 bg-white border border-slate-200 rounded-full px-3.5 py-2 text-xs font-semibold text-slate-900 shadow-lg shadow-slate-200/60 animate-[bob3_6s_ease-in-out_infinite]">
+      <div className="absolute top-2 left-0 z-20 flex items-center gap-1.5 bg-[#141816e6] border border-[#f8717140] rounded-full px-3.5 py-2 text-xs font-semibold text-[#f87171] animate-[bob3_6s_ease-in-out_infinite]">
         <AlertTriangle size={13} className="text-red-500" />
         Mistake
       </div>
-      <div className="absolute bottom-28 -left-2 z-20 flex items-center gap-1.5 bg-white border border-slate-200 rounded-full px-3.5 py-2 text-xs font-semibold text-slate-900 shadow-lg shadow-slate-200/60 animate-[bob2_5.5s_ease-in-out_infinite]">
+      <div className="absolute bottom-28 -left-2 z-20 flex items-center gap-1.5 bg-[#141816e6] border border-[#fb923c40] rounded-full px-3.5 py-2 text-xs font-semibold text-[#fb923c] animate-[bob2_5.5s_ease-in-out_infinite]">
         <Mic size={13} className="text-orange-500" />
         Mispronounced
       </div>
-      <div className="absolute bottom-6 right-4 z-20 flex items-center gap-1.5 bg-white border border-slate-200 rounded-full px-3.5 py-2 text-xs font-semibold text-slate-900 shadow-lg shadow-slate-200/60 animate-[bob1_6.5s_ease-in-out_infinite]">
+      <div className="absolute bottom-6 right-4 z-20 flex items-center gap-1.5 bg-[#141816e6] border border-[#fbbf2440] rounded-full px-3.5 py-2 text-xs font-semibold text-[#fbbf24]  animate-[bob1_6.5s_ease-in-out_infinite]">
         <BookX size={13} className="text-amber-500" />
         Knowledge gap
       </div>
 
       {/* feedback report card */}
-      <div className="absolute top-14 left-1/2 -translate-x-1/2 w-[320px] bg-white border border-slate-200 rounded-2xl shadow-2xl shadow-slate-300/40 p-5 z-10 animate-[bob1_5s_ease-in-out_infinite]">
+      <div className="absolute top-14 left-1/2 -translate-x-1/2 w-[320px] bg-transparent border border-[#5dcaa54d] rounded-2xl p-5 z-10 animate-[bob1_5s_ease-in-out_infinite]">
         <div className="flex items-center gap-3 mb-4">
-          <div className="w-11 h-11 rounded-full bg-gradient-to-br from-violet-500 to-sky-400 flex items-center justify-center shrink-0">
+          <div className="w-11 h-11 rounded-full bg-[]  flex items-center justify-center shrink-0">
             <Bot size={20} className="text-white" />
           </div>
           <div>
-            <p className="font-semibold text-sm text-slate-900">
+            <p className="font-semibold text-sm text-[#f0f0f2]">
               AI Interviewer
             </p>
             <p className="text-xs text-slate-400">
@@ -33,18 +32,18 @@ export function HeroSessionCard() {
           </div>
         </div>
 
-        <div className="space-y-2.5">
-          <div className="flex gap-2 items-start bg-red-50 rounded-lg px-3 py-2.5">
+        <div className="space-y-2.5 bg-[]">
+          <div className="flex gap-2 items-start bg-[#f8717114] border border-[#f8717140] rounded-lg px-3 py-2.5">
             <AlertTriangle size={14} className="text-red-500 mt-0.5 shrink-0" />
-            <p className="text-[12.5px] text-slate-700 leading-snug">
+            <p className="text-[12.5px] text-[#8b8b94] leading-snug">
               <span className="font-semibold text-red-600">Mistake — </span>
               said hash map lookup is O(n); it&apos;s O(1) average case.
             </p>
           </div>
 
-          <div className="flex gap-2 items-start bg-orange-50 rounded-lg px-3 py-2.5">
+          <div className="flex gap-2 items-start border border-[#fb923c40] bg-[#fb923c14] rounded-lg px-3 py-2.5">
             <Mic size={14} className="text-orange-500 mt-0.5 shrink-0" />
-            <p className="text-[12.5px] text-slate-700 leading-snug">
+            <p className="text-[12.5px] text-[#8b8b94] leading-snug">
               <span className="font-semibold text-orange-600">
                 Mispronounced —{" "}
               </span>
@@ -52,9 +51,9 @@ export function HeroSessionCard() {
             </p>
           </div>
 
-          <div className="flex gap-2 items-start bg-amber-50 rounded-lg px-3 py-2.5">
+          <div className="flex gap-2 items-start bg-[#fbbf2414] border border-[#fbbf2440] rounded-lg px-3 py-2.5">
             <BookX size={14} className="text-amber-500 mt-0.5 shrink-0" />
-            <p className="text-[12.5px] text-slate-700 leading-snug">
+            <p className="text-[12.5px] text-[#8b8b94] leading-snug">
               <span className="font-semibold text-amber-600">
                 Knowledge gap —{" "}
               </span>
@@ -65,7 +64,9 @@ export function HeroSessionCard() {
       </div>
 
       {/* overall score chip */}
-      <div className="absolute top-6 right-0 z-20 bg-white border border-slate-200 rounded-2xl shadow-xl shadow-slate-300/40 px-4 py-3 animate-[bob2_4.5s_ease-in-out_infinite]">
+      <div
+        className="absolute top-6 right-0 z-20 bg-[#163123e6] border border-[#5dcaa54d] rounded-2xl  px-4 py-3 animate-[bob2_4.5s_ease-in-out_infinite]"
+      >
         <p className="font-serif text-2xl font-semibold text-emerald-500 leading-none">
           78%
         </p>

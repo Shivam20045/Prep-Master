@@ -2,27 +2,66 @@ export function AmbientBlobsBackground({ className = "" }) {
   return (
     <div
       className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}
+      style={{
+        backgroundColor: "#050605",
+        backgroundImage: [
+          "radial-gradient(circle at 12% -10%, rgba(93, 202, 165, 0.22), transparent 45%)",
+          "radial-gradient(circle at 90% 12%, rgba(120, 200, 150, 0.16), transparent 42%)",
+          "linear-gradient(180deg, #07090a 0%, #0b0e0c 35%, #090b0a 70%, #050605 100%)",
+        ].join(", "),
+      }}
     >
       <div
-        className="absolute w-[520px] h-[520px] rounded-full blur-[90px] opacity-40 -top-36 -left-28
-        bg-[radial-gradient(circle_at_30%_30%,#7c5cfc,transparent_70%)]
-        animate-[drift1_22s_ease-in-out_infinite]"
+        style={{
+          position: "absolute",
+          top: "-160px",
+          left: "-128px",
+          width: "560px",
+          height: "560px",
+          borderRadius: "9999px",
+          filter: "blur(110px)",
+          opacity: 0.45,
+          background:
+            "radial-gradient(circle at 40% 40%, #5dcaa5, transparent 70%)",
+          animation: "driftSlow 34s ease-in-out infinite",
+        }}
       />
       <div
-        className="absolute w-[460px] h-[460px] rounded-full blur-[90px] opacity-40 top-56 -right-40
-        bg-[radial-gradient(circle_at_40%_40%,#59c6ff,transparent_70%)]
-        animate-[drift2_26s_ease-in-out_infinite]"
+        style={{
+          position: "absolute",
+          top: "0px",
+          right: "-160px",
+          width: "480px",
+          height: "480px",
+          borderRadius: "9999px",
+          filter: "blur(110px)",
+          opacity: 0.28,
+          background:
+            "radial-gradient(circle at 50% 50%, #6ee7b7, transparent 70%)",
+          animation: "driftSlow 40s ease-in-out infinite reverse",
+        }}
       />
       <div
-        className="absolute w-[400px] h-[400px] rounded-full blur-[90px] opacity-35 -bottom-36 left-1/4
-        bg-[radial-gradient(circle_at_50%_50%,#ff9f6b,transparent_70%)]
-        animate-[drift3_30s_ease-in-out_infinite]"
+        style={{
+          position: "absolute",
+          top: "128px",
+          left: "25%",
+          width: "400px",
+          height: "400px",
+          borderRadius: "9999px",
+          filter: "blur(130px)",
+          opacity: 0.25,
+          background:
+            "radial-gradient(circle at 50% 50%, #4fb98a, transparent 70%)",
+          animation: "driftSlow 28s ease-in-out infinite",
+        }}
       />
-      <div
-        className="absolute w-[340px] h-[340px] rounded-full blur-[90px] opacity-25 bottom-10 right-10
-        bg-[radial-gradient(circle_at_50%_50%,#2fd48f,transparent_70%)]
-        animate-[drift1_24s_ease-in-out_infinite_reverse]"
-      />
+      <style>{`
+        @keyframes driftSlow {
+          0%, 100% { transform: translate(0, 0); }
+          50% { transform: translate(24px, 18px); }
+        }
+      `}</style>
     </div>
   );
 }
